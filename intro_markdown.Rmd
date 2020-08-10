@@ -2,11 +2,15 @@
 title: "Intro Markdown"
 author: "Matt Bixley"
 date: "10/08/2020"
-output: html_document
+output: 
+  html_document:
+    #theme: darkly
+bibliography: "data/library.bib"
+
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, knitr.table.format = "html")
+knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(knitr)
@@ -37,7 +41,7 @@ penguins %>%
 ```
 
 
-we can generate more elegent tables with [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+we can generate more elegent tables with [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview)
 
 ```{r kableextra}
 penguins %>% 
@@ -102,4 +106,9 @@ flipper_hist
 ```{r}
 citation("palmerpenguins")
 ```
+
+https://github.com/citation-style-language/styles
+
+# References
+
 

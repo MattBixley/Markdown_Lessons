@@ -25,7 +25,8 @@ More detailed tutorials and examples can be found at the following
 
 [RStudio/RMarkdown](https://rmarkdown.rstudio.com)  
 [R Markdown for Scientists](https://rmd4sci.njtierney.com/)  
+[R Markdown: The Definitive Guid](https://bookdown.org/yihui/rmarkdown/)
 
 
 #### Data  
-The Palmer Penguins dataset used can be found [here](https://github.com/allisonhorst/palmerpenguins)
+The Palmer Penguins dataset used can be found [here](https://allisonhorst.github.io/palmerpenguins/)
