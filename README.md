@@ -25,7 +25,8 @@ More detailed tutorials and examples can be found at the following
 
 [RStudio/RMarkdown](https://rmarkdown.rstudio.com)  
 [R Markdown for Scientists](https://rmd4sci.njtierney.com/)  
-[R Markdown: The Definitive Guid](https://bookdown.org/yihui/rmarkdown/)
+[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+[R for Data Science](https://r4ds.had.co.nz/index.html)
 
 
 #### Data  
