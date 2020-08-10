@@ -6,7 +6,8 @@ output:
   html_document:
     #theme: darkly
 bibliography: "data/markdown.bib"
-
+#csl: "data/nature.csl"
+csl: "data/new-zealand-veterinary-journal.csl"
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +21,7 @@ library(palmerpenguins)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
@@ -101,11 +102,16 @@ flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
 flipper_hist
 ```
 
+### Citations
+How do we cite things?
+
 ```{r}
 citation("palmerpenguins")
 ```
 
-https://github.com/citation-style-language/styles
+inline citations using a .bib file we can cite PalmerPenguins from Alison Horst [@horst2020] and at the same time lets cive the citation for R created by Robert Gentleman [@gentleman2004]
+
+And we can change all the stlyes of citation to suit. [Here](https://citationstyles.org/) or here at [Zotero](https://www.zotero.org/styles) 
 
 # References
 
