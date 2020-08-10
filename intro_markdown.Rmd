@@ -21,7 +21,7 @@ library(palmerpenguins)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using _R Markdown_ see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this: `Ctrl + Shft + I`
 
@@ -128,27 +128,6 @@ citation("palmerpenguins")
 inline citations using a .bib file we can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020]
 
 And we can change all the stlyes of citation to suit. [Here](https://citationstyles.org/) or here at [Zotero](https://www.zotero.org/styles) 
-
-
-# Incremental Figure Numbers
-
-```{r other, include=FALSE}
-fn = local({
-  i = 0
-  function(x) {
-    i <<- i + 1
-    paste('Figure ', i, ': ', x, sep = '')
-  }
-})
-```
-
-```{r test-a, fig.cap=fn('this is one plot')}
-plot(1:10)
-```
-
-```{r test-b, fig.cap=fn('another plot')}
-plot(rnorm(10))
-```
 
 # References
 
