@@ -1,7 +1,8 @@
 ---
 title: "Intro Markdown"
 author: "Matt Bixley"
-date: "10/08/2020"
+#date: "09/08/2020"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document:
     #theme: darkly
@@ -11,7 +12,8 @@ csl: "data/new-zealand-veterinary-journal.csl"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+#knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(knitr)
 library(palmerpenguins)
@@ -102,9 +104,8 @@ flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
        title = "Penguin flipper lengths")
 flipper_hist
 ```
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-See figure \ref{histogram}
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ## Images  
 
