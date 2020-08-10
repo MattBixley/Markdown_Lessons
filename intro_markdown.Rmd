@@ -12,11 +12,9 @@ csl: "data/new-zealand-veterinary-journal.csl"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-
 library(tidyverse)
 library(knitr)
 library(palmerpenguins)
-
 ```
 
 ## R Markdown
@@ -130,5 +128,3 @@ inline citations using a .bib file we can cite PalmerPenguins [@horst2020] and a
 And we can change all the stlyes of citation to suit. [Here](https://citationstyles.org/) or here at [Zotero](https://www.zotero.org/styles) 
 
 # References
-
-
