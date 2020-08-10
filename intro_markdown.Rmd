@@ -8,10 +8,11 @@ output:
     #theme: spacelab
     #highlight: zenburn
     toc: true
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-      number_sections: true
+    number_sections: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    
 bibliography: "data/markdown.bib"
 #csl: "data/nature.csl"
 csl: "data/new-zealand-veterinary-journal.csl"
@@ -120,6 +121,8 @@ $$a^2 + b^2 = c^2$$
 $$\begin{vmatrix}a & b\\
 c & d
 \end{vmatrix}=ad-bc$$
+
+# Other Options
 
 ## Images  
 
