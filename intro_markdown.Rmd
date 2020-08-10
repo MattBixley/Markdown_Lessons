@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, knitr.table.format = "html")
 
 library(tidyverse)
 library(knitr)
@@ -34,11 +34,17 @@ head(penguins)
 penguins %>% 
   count(species) %>% 
   kable(caption = "Species Counts")
+```
 
+
+we can generate more elegent tables with [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+
+```{r kableextra}
 penguins %>% 
   group_by(species) %>% 
   summarize(across(where(is.numeric), mean, na.rm = TRUE)) %>% 
-  kable()
+  kable(caption = "Summarized Data", format = "html") %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left")
 ```
 
 
@@ -55,7 +61,7 @@ mass_flipper <- ggplot(data = penguins,
 mass_flipper
 ```
 ```{r mass-flipper-detailed}
-mass_flipper <- ggplot(data = penguins, 
+mass_flipper2 <- ggplot(data = penguins, 
                        aes(x = flipper_length_mm,
                            y = body_mass_g)) +
   geom_point(aes(color = species, 
@@ -75,7 +81,7 @@ mass_flipper <- ggplot(data = penguins,
         plot.title.position = "plot",
         plot.caption = element_text(hjust = 0, face= "italic"),
         plot.caption.position = "plot")
-mass_flipper
+mass_flipper2
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
