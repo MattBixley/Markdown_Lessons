@@ -3,9 +3,15 @@ title: "Intro Markdown"
 author: "Matt Bixley"
 #date: "09/08/2020"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
-output: 
+output:
   html_document:
-    #theme: darkly
+    #theme: spacelab
+    #highlight: zenburn
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+      number_sections: true
 bibliography: "data/markdown.bib"
 #csl: "data/nature.csl"
 csl: "data/new-zealand-veterinary-journal.csl"
@@ -24,8 +30,6 @@ library(palmerpenguins)
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using _R Markdown_ see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this: `Ctrl + Shft + I`
-
-
 
 # Palmer Penguins
 
@@ -107,6 +111,16 @@ flipper_hist
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+## Equations  
+
+equation $z = x + y$ can be written in line or equations can be centered
+
+$$a^2 + b^2 = c^2$$
+
+$$\begin{vmatrix}a & b\\
+c & d
+\end{vmatrix}=ad-bc$$
+
 ## Images  
 
 If we have images or plots already stored that we wish to add we can write the following with or without an image caption.
@@ -116,6 +130,16 @@ If we have images or plots already stored that we wish to add we can write the f
 <p align="center">
   <img width="600" height="600" src="data/pp_logo.png">
 </p>
+
+## Engines
+
+Python, Shell, SQL, Rcpp, Stan, JavaScript, Julia, C and Fortran are all options
+
+```{bash}
+echo "Hello from Bash!"
+```
+
+
 
 ## Citations
 How do we cite things?
