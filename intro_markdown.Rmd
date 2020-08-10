@@ -5,7 +5,7 @@ date: "10/08/2020"
 output: 
   html_document:
     #theme: darkly
-bibliography: "data/library.bib"
+bibliography: "data/markdown.bib"
 
 ---
 
@@ -14,8 +14,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(knitr)
-
-#install.packages(palmerpenguins)
 library(palmerpenguins)
 
 ```
@@ -28,7 +26,7 @@ When you click the **Knit** button a document will be generated that includes bo
 
 # Palmer Penguins
 
-We are going to use a dataset 
+We are going to use the Palmer Penguins dataset curated by [Allison Horst](https://github.com/allisonhorst/palmerpenguins) and can be installed from Cran with the code ```install.packages("palmerpenguins")``` There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica.
 
 ```{r penguins}
 head(penguins)
