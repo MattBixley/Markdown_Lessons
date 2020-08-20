@@ -5,14 +5,12 @@ author: "Matt Bixley"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   html_document:
-    #theme: spacelab
-    #highlight: zenburn
+    theme: spacelab
+    highlight: zenburn
     toc: true
     number_sections: true
     toc_float: true
-    collapsed: false
-    smooth_scroll: false
-    
+    df_print: kable
 bibliography: "data/markdown.bib"
 #csl: "data/nature.csl"
 csl: "data/new-zealand-veterinary-journal.csl"
@@ -36,10 +34,11 @@ When you click the **Knit** button a document will be generated that includes bo
 
 We are going to use the Palmer Penguins dataset curated by [Allison Horst](https://github.com/allisonhorst/palmerpenguins) and can be installed from Cran with the code ```install.packages("palmerpenguins")``` There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica.
 
-
 ```{r penguins}
 head(penguins)
 ```
+
+## Tables  
 
 ```{r count}
 penguins %>% 
@@ -57,6 +56,23 @@ penguins %>%
   kable(caption = "Summarized Data", format = "html") %>% 
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left")
 ```
+
+```{r fancy}
+text_tbl <- data.frame(
+  Items = c("Item 1", "Item 2", "Item 3"),
+  Features = c(
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. ",
+    "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ", 
+    "Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis. "
+  )
+)
+
+kable(text_tbl) %>%
+  kableExtra::kable_styling(full_width = F) %>%
+  kableExtra::column_spec(1, bold = T, border_right = T) %>%
+  kableExtra::column_spec(2, width = "30em", background = "yellow")
+```
+
 
 
 ## Including Plots
