@@ -5,13 +5,14 @@ author: "Matt Bixley"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   html_document:
-    #theme: spacelab
-    #highlight: zenburn
+    theme: spacelab
+    highlight: zenburn
     toc: true
     number_sections: true
     toc_float: true
     collapsed: false
     smooth_scroll: false
+    df_print: kable
     
 bibliography: "data/markdown.bib"
 #csl: "data/nature.csl"
@@ -133,6 +134,11 @@ If we have images or plots already stored that we wish to add we can write the f
 <p align="center">
   <img width="600" height="600" src="data/pp_logo.png">
 </p>
+
+```{r, fig.align = "right", out.width="50%"}
+knitr::include_graphics("data/pp_logo.png")
+```
+
 
 ## Engines
 
