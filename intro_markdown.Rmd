@@ -139,12 +139,11 @@ c & d
 
 If we have images or plots already stored that we wish to add we can write the following with or without an image caption.
 
-![PalmerPenguins](data/pp_logo.png)  
+![PalmerPenguins](data/pp_logo.png){width=50%}
 
-<p align="center">
-  <img width="600" height="600" src="data/pp_logo.png">
-</p>
+  
 
+\pagebreak  
 ```{r image, fig.align = "center", fig.width=5, fig.height=5}
 include_graphics("data/pp_logo.png")
 ```
