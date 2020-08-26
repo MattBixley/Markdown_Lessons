@@ -1,30 +1,34 @@
 ---
 title: "Intro Markdown"
 author: "Matt Bixley"
-#date: "09/08/2020"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   html_document:
-    theme: spacelab
-    highlight: zenburn
-    toc: true
-    number_sections: true
-    toc_float: true
+    code_folding: hide
     df_print: kable
-bibliography: "data/markdown.bib"
-#csl: "data/nature.csl"
-csl: "data/new-zealand-veterinary-journal.csl"
+    highlight: espresso
+    number_sections: yes
+    theme: journal
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+bibliography: data/markdown.bib
+csl: data/new-zealand-veterinary-journal.csl
+always_allow_html: yes
 ---
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+#knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(knitr)
 library(palmerpenguins)
 ```
 
-## R Markdown
+# R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using _R Markdown_ see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
 
@@ -74,19 +78,11 @@ kable(text_tbl) %>%
 
 
 
-## Including Plots
+## Plots
 
 You can also embed plots, for example:
 
-```{r mass-flipper-simple}
-mass_flipper <- ggplot(data = penguins, 
-                       aes(x = flipper_length_mm,
-                           y = body_mass_g)) +
-  geom_point(aes(color = species, 
-                 shape = species))
-mass_flipper
-```
-```{r mass-flipper-detailed}
+```{r mass-flipper}
 mass_flipper2 <- ggplot(data = penguins, 
                        aes(x = flipper_length_mm,
                            y = body_mass_g)) +
@@ -149,6 +145,11 @@ If we have images or plots already stored that we wish to add we can write the f
   <img width="600" height="600" src="data/pp_logo.png">
 </p>
 
+```{r image, fig.align = "center", fig.width=5, fig.height=5}
+include_graphics("data/pp_logo.png")
+```
+
+
 ## Engines
 
 Python, Shell, SQL, Rcpp, Stan, JavaScript, Julia, C and Fortran are all options
@@ -166,7 +167,7 @@ How do we cite things?
 citation("palmerpenguins")
 ```
 
-inline citations using a .bib file we can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020]
+inline citations using a .bib file we can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020] or inline like this @r2020
 
 And we can change all the stlyes of citation to suit. [Here](https://citationstyles.org/) or here at [Zotero](https://www.zotero.org/styles) 
 
