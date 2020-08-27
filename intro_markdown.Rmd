@@ -1,7 +1,7 @@
 ---
 title: "Intro Markdown"
 author: "Matt Bixley"
-date: '`r format(Sys.Date(), "%B %d, %Y")`'
+date: "27 August, 2020"
 output:
   html_document:
     code_folding: hide
