@@ -16,7 +16,7 @@ After opening the R Project, make sure to run this code beforehand to make sure 
 # RUN THE FOLLOWING TO SET UP REQUIRED PACKAGES AND DATA
 # BEFORE FIRST COMPILING THIS RMD
 # (only need to do once)
-source("Code/setup.R")
+source("scripts/setup.R")
 ```
 
 ## 1. Introductory Markdown
