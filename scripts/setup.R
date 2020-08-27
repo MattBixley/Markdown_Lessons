@@ -1,37 +1,38 @@
 # Install required packages
-if (!require(tidyverse)) {
-  install.packages("tidyverse")
+need_package <- c("tidyverse", "here", "kableExtra", "palmerpenguins")
+
+install_packages <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
 }
 
-if (!require(here)) {
-  install.packages("here")
-}
-
-if (!require(janitor)) {
-  install.packages("janitor")
-}
-
-if (!require(palmerpenguins)) {
-  install.packages("palmerpenguins")
-}
+purrr::walk(need_package, install_packages)
 
 
-if (!file.exists(here::here("Data/"))) {
-  dir.create(here::here("Data/"))
+# Split the palmer penguins data to islands
+
+# check if a data directory exists
+if (!file.exists(here::here("data/"))) {
+  dir.create(here::here("data/"))
 }
 
 # Create the data sets if they don't exist
-if (!(file.exists(here::here("Data/dream.csv")) &
-      file.exists(here::here("Data/biscoe.csv")) &
-      file.exists(here::here("Data/torgersen.csv")) )) {
+if (!(file.exists(here::here("data/dream.csv")) &
+      file.exists(here::here("data/biscoe.csv")) &
+      file.exists(here::here("data/torgersen.csv")) )) {
+  
+  # get the list of islands to split the data on 
   islands <- unique(palmerpenguins::penguins_raw$Island)
-
+  
+  # function to read, filter and write the data set
   create_island_file <- function(island_name){
     palmerpenguins::penguins_raw %>%
       dplyr::filter(Island == island_name) %>%
       readr::write_csv(path = here::here("Data/",stringr::str_c(tolower(island_name),".csv")))
   }
-
+  
+  # use purrr to apply the fucntion to all the islands
   purrr::walk(islands, create_island_file)
 
 }

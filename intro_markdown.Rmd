@@ -26,6 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tidyverse)
 library(kableExtra)
 library(palmerpenguins)
+library(knitr)
 ```
 
 # R Markdown
@@ -58,7 +59,7 @@ penguins %>%
   group_by(species) %>% 
   summarize(across(where(is.numeric), mean, na.rm = TRUE)) %>% 
   kable(caption = "Summarized Data", format = "html") %>% 
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left")
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left")
 ```
 
 ```{r fancy}
@@ -71,11 +72,10 @@ text_tbl <- data.frame(
   )
 )
 kable(text_tbl) %>%
-  kableExtra::kable_styling(full_width = F) %>%
-  kableExtra::column_spec(1, bold = T, border_right = T) %>%
-  kableExtra::column_spec(2, width = "30em", background = "yellow")
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "30em", background = "yellow")
 ```
-
 
 
 ## Plots
@@ -99,7 +99,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 ## Equations  
 
-equation $z = x + y$ can be written in line or equations can be centered
+equation $z = x + y$ can be written inline or equations can be centered in their own block
 
 $$a^2 + b^2 = c^2$$
 
@@ -107,7 +107,7 @@ $$\begin{vmatrix}a & b\\
 c & d
 \end{vmatrix}=ad-bc$$
 
-# Other Options
+# More Options
 
 ## Images  
 
@@ -115,13 +115,10 @@ If we have images or plots already stored that we wish to add we can write the f
 
 ![PalmerPenguins](data/pp_logo.png){width=50%}
 
-  
 
-\pagebreak  
 ```{r image, fig.align = "center", fig.width=5, fig.height=5}
 include_graphics("data/pp_logo.png")
 ```
-
 
 ## Engines
 
