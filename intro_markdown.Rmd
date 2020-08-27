@@ -24,7 +24,7 @@ always_allow_html: yes
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 #knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-library(knitr)
+library(kableExtra)
 library(palmerpenguins)
 ```
 
@@ -82,32 +82,6 @@ kable(text_tbl) %>%
 
 You can also embed plots, for example:
 
-```{r mass-flipper}
-mass_flipper2 <- ggplot(data = penguins, 
-                       aes(x = flipper_length_mm,
-                           y = body_mass_g)) +
-  geom_point(aes(color = species, 
-                 shape = species),
-             size = 3,
-             alpha = 0.8) +
-  theme_minimal() +
-  scale_color_manual(values = c("darkorange","purple","cyan4")) +
-  labs(title = "Penguin size, Palmer Station LTER",
-       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
-       x = "Flipper length (mm)",
-       y = "Body mass (g)",
-       color = "Penguin species",
-       shape = "Penguin species") +
-  theme(legend.position = c(0.2, 0.7),
-        legend.background = element_rect(fill = "white", color = NA),
-        plot.title.position = "plot",
-        plot.caption = element_text(hjust = 0, face= "italic"),
-        plot.caption.position = "plot")
-mass_flipper2
-```
-
-
-
 ```{r histogram, echo = FALSE, fig.cap = "Caption for the plot created", fig.align = "center", warning = FALSE}
 flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), 
@@ -157,14 +131,8 @@ Python, Shell, SQL, Rcpp, Stan, JavaScript, Julia, C and Fortran are all options
 echo "Hello from Bash!"
 ```
 
-
-
 ## Citations
 How do we cite things?
-
-```{r}
-citation("palmerpenguins")
-```
 
 inline citations using a .bib file we can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020] or inline like this @r2020
 
