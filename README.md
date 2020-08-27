@@ -1,5 +1,24 @@
 # Markdown_Lessons
 
+# Setup
+
+**Download the repository**, either:
+- By clicking on the green code box in the right corner
+- If you have the `use_this` package installed this can be done from within R using
+```
+usethis::use_course(url = "https://github.com/MattBixley/Markdown_Lessons/archive/master.zip", 
+    destdir = "~/Desktop")
+```
+
+After opening the R Project, make sure to run this code beforehand to make sure you are all set up.
+
+```{r prerequsites, eval = FALSE, include = FALSE}
+# RUN THE FOLLOWING TO SET UP REQUIRED PACKAGES AND DATA
+# BEFORE FIRST COMPILING THIS RMD
+# (only need to do once)
+source("scripts/setup.R")
+```
+
 ## 1. Introductory Markdown
 
 - Objectives
