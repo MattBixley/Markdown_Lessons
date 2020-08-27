@@ -9,7 +9,6 @@ install_packages <- function(pkg){
 
 purrr::walk(need_package, install_packages)
 
-
 # Split the palmer penguins data to islands
 
 # check if a data directory exists
@@ -29,7 +28,7 @@ if (!(file.exists(here::here("data/dream.csv")) &
   create_island_file <- function(island_name){
     palmerpenguins::penguins_raw %>%
       dplyr::filter(Island == island_name) %>%
-      readr::write_csv(path = here::here("Data/",stringr::str_c(tolower(island_name),".csv")))
+      readr::write_csv(path = here::here("data/",stringr::str_c(tolower(island_name),".csv")))
   }
   
   # use purrr to apply the fucntion to all the islands
