@@ -12,6 +12,12 @@ usethis::use_course(url = "https://github.com/MattBixley/Markdown_Lessons/archiv
 
 After opening the R Project, make sure to run this code beforehand to make sure you are all set up.
 
+```{r prerequsites, eval = FALSE, include = FALSE}
+# RUN THE FOLLOWING TO SET UP REQUIRED PACKAGES AND DATA
+# BEFORE FIRST COMPILING THIS RMD
+# (only need to do once)
+source("Code/setup.R")
+```
 
 ## 1. Introductory Markdown
 
