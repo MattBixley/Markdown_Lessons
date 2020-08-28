@@ -1,22 +1,19 @@
 ---
-title: "Intro Markdown"
+title: "Intro to Markdown"
 author: "Matt Bixley"
 date: "27 August, 2020"
 output:
   html_document:
-    code_folding: hide
+    code_folding: show
     df_print: kable
     highlight: espresso
     number_sections: yes
-    theme: journal
+    theme: readable
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
-  word_document:
-    toc: yes
-bibliography: data/markdown.bib
-csl: data/new-zealand-veterinary-journal.csl
+bibliography: resources/markdown.bib
+csl: resources/new-zealand-veterinary-journal.csl
+subtitle: _writing repoducible reports_
 always_allow_html: yes
 ---
 
@@ -31,13 +28,28 @@ library(knitr)
 
 # R Markdown
 
+## Objectives
+
+- text formatting
+- code
+  * highlighting
+  * chunks
+  * inline
+- tables
+- plotting
+- citations
+
+## Example
+
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using _R Markdown_ see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this: `Ctrl + Shft + I`
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can highlight a piece of code like this: `Ctrl + Shft + I` 
 
 # Palmer Penguins
 
-We are going to use the Palmer Penguins dataset curated by [Allison Horst](https://github.com/allisonhorst/palmerpenguins) and can be installed from Cran with the code ```install.packages("palmerpenguins")``` There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica.
+We are going to use the Palmer Penguins dataset curated by [Allison Horst](https://github.com/allisonhorst/palmerpenguins) and can be installed from Cran with the code `install.packages("palmerpenguins")` There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica.
+
+Our first *Code Chunk* will be to look at the dataset 
 
 ```{r penguins}
 head(penguins)
@@ -45,36 +57,20 @@ head(penguins)
 
 ## Tables  
 
+Use the `kable()` function from `knitr` to make tables.
 ```{r count}
 penguins %>% 
   count(species) %>% 
   kable(caption = "Species Counts")
 ```
-
-
-we can generate more elegent tables with [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview)
-
+We can generate more elegent tables with the [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview) package.
 ```{r kableextra}
 penguins %>% 
   group_by(species) %>% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE)) %>% 
+  select(contains(c("length", "depth", "mass"))) %>% 
+  summarize_all(., mean, na.rm = TRUE) %>%
   kable(caption = "Summarized Data", format = "html") %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left")
-```
-
-```{r fancy}
-text_tbl <- data.frame(
-  Items = c("Item 1", "Item 2", "Item 3"),
-  Features = c(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. ",
-    "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ", 
-    "Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis. "
-  )
-)
-kable(text_tbl) %>%
-  kable_styling(full_width = F) %>%
-  column_spec(1, bold = T, border_right = T) %>%
-  column_spec(2, width = "30em", background = "yellow")
 ```
 
 
@@ -103,21 +99,14 @@ equation $z = x + y$ can be written inline or equations can be centered in their
 
 $$a^2 + b^2 = c^2$$
 
-$$\begin{vmatrix}a & b\\
-c & d
-\end{vmatrix}=ad-bc$$
-
 # More Options
 
 ## Images  
 
 If we have images or plots already stored that we wish to add we can write the following with or without an image caption.
 
-![PalmerPenguins](data/pp_logo.png){width=50%}
-
-
-```{r image, fig.align = "center", fig.width=5, fig.height=5}
-include_graphics("data/pp_logo.png")
+```{r image, fig.align = "center", fig.width=5, fig.height=5, caption="Palmer Penguins"}
+knitr::include_graphics("resources/pp_logo.png")
 ```
 
 ## Engines
@@ -128,10 +117,17 @@ Python, Shell, SQL, Rcpp, Stan, JavaScript, Julia, C and Fortran are all options
 echo "Hello from Bash!"
 ```
 
+```{python}
+def square(a):
+  return a * a
+
+square(4)  
+```
+
 ## Citations
 How do we cite things?
 
-inline citations using a .bib file we can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020] or inline like this @r2020
+Citations need a **.bib** file and to know the citation key. We can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020] or inline like this @r2020
 
 And we can change all the stlyes of citation to suit. [Here](https://citationstyles.org/) or here at [Zotero](https://www.zotero.org/styles) 
 
