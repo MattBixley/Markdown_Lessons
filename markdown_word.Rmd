@@ -1,127 +1,34 @@
 ---
-title: "Intro to Markdown"
-author: "Matt Bixley"
-subtitle: "_writing repoducible reports_"
-date: "27 August, 2020"
-bibliography: resources/markdown.bib
-csl: resources/new-zealand-veterinary-journal.csl
-output: 
-  word_document: 
-    reference_docx: resources/markdown_styles.docx
-    fig_caption: yes
-    highlight: espresso
-    keep_md: yes
-    toc: yes
-always_allow_html: true
+title: "Test Report"
+subtitle: "subtitle here"
+author: "Your Name"
+date: "July 3, 2015"
+output:
+  word_document:
+    reference_docx: "resources/markdown_styles.docx"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-#knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(palmerpenguins)
-library(knitr)
+My report starts here.
+
+# Header 1
+write a paragraph
+
+## Header 2
+write something else
+
+\pagebreak
+### Header 3 - Table  
+
+
+```{r table, echo = F}
 library(pander)
-panderOptions('table.alignment.default', function(df)
-    ifelse(sapply(df, is.numeric), 'right', 'left'))
-panderOptions('table.split.table', Inf)
-panderOptions('big.mark', ",")
-panderOptions('keep.trailing.zeros', TRUE)
-```
+library(palmerpenguins)
+library(tidyverse)
 
-# R Markdown - MS Word
-
-## Objectives
-- reference template
-- tables
-- citations
-
-
-# Palmer Penguins
-
-We are going to use the Palmer Penguins dataset curated by [Allison Horst](https://github.com/allisonhorst/palmerpenguins) and can be installed from Cran with the code `install.packages("palmerpenguins")` There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica.
-<br>
-Our first *Code Chunk* will be to look at the dataset 
-
-```{r penguins}
-head(penguins)
-```
-
-## Tables  
-
-Use the `kable()` function from `knitr` to make tables.
-
-```{r count}
-penguins %>% 
-  count(species) %>% 
-  pander(caption = "Species Counts")
-```
-
-We can generate more elegant tables with the [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview) package.
-
-```{r kableextra}
 penguins %>% 
   group_by(species) %>% 
   select(contains(c("length", "depth", "mass"))) %>% 
   summarize_all(., mean, na.rm = TRUE) %>%
-  pander(caption = "Summarized Data", format = "html")
+  pander(caption = "Summarized Data")
 ```
 
-## Plots
-
-You can also embed plots, for example:
-
-```{r histogram, echo = FALSE, fig.cap = "Caption for the plot created", fig.align = "center", warning = FALSE}
-flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
-  geom_histogram(aes(fill = species), 
-                 alpha = 0.5, 
-                 position = "identity") +
-  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
-  theme_minimal() +
-  labs(x = "Flipper length (mm)",
-       y = "Frequency",
-       title = "Penguin flipper lengths")
-flipper_hist
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-## Equations  
-
-equation $z = x + y$ can be written inline or equations can be centered in their own block
-
-$$a^2 + b^2 = c^2$$
-
-# More Options
-
-## Images  
-
-If we have images or plots already stored that we wish to add we can write the following with or without an image caption.
-
-```{r image, fig.align = "center", fig.width=5, fig.height=5, caption="Palmer Penguins"}
-knitr::include_graphics("resources/pp_logo.png")
-```
-
-## Engines
-
-Python, Shell, SQL, Rcpp, Stan, JavaScript, Julia, C and Fortran are all options
-
-```{bash}
-echo "Hello from Bash!"
-```
-
-```{python}
-def square(a):
-  return a * a
-
-square(4)  
-```
-
-## Citations
-How do we cite things?
-
-Citations need a **.bib** file and to know the citation key. We can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020] or inline like this @r2020
-
-And we can change all the stlyes of citation to suit. [Here](https://citationstyles.org/) or here at [Zotero](https://www.zotero.org/styles) 
-
-# References
