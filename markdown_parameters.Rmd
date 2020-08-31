@@ -15,6 +15,8 @@ bibliography: resources/markdown.bib
 csl: resources/new-zealand-veterinary-journal.csl
 subtitle: _writing repoducible reports_
 always_allow_html: yes
+params:
+  island: biscoe
 ---
 
 ```{r setup, include=FALSE}
@@ -24,46 +26,26 @@ library(tidyverse)
 library(kableExtra)
 library(palmerpenguins)
 library(knitr)
+library(janitor)
 ```
 
-# R Markdown
+# Objectives
 
-## Objectives
+- parameters
+- report template
+- output
 
-- text formatting
-- code
-  * highlighting
-  * chunks
-  * inline
-- tables
-- plotting
-- citations
+# Data
 
-## Example
+Read in our paramterized data
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using _R Markdown_ see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can highlight a piece of code like this: `Ctrl + Shft + I` 
-
-# Palmer Penguins
-
-We are going to use the Palmer Penguins dataset curated by [Allison Horst](https://github.com/allisonhorst/palmerpenguins) and can be installed from Cran with the code `install.packages("palmerpenguins")` There are 3 different species of penguins in this dataset, collected from 3 islands in the Palmer Archipelago, Antarctica.
-
-Our first *Code Chunk* will be to look at the dataset 
-
-```{r penguins}
-head(penguins)
+```{r data}
+penguins <- data <- read_csv(here::here('data', glue::glue(params$island, '.csv'))) %>% 
+  clean_names()
 ```
 
-## Tables  
+# Tables  
 
-Use the `kable()` function from `knitr` to make tables.
-```{r count}
-penguins %>% 
-  count(species) %>% 
-  kable(caption = "Species Counts")
-```
-We can generate more elegent tables with the [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html#overview) package.
 ```{r kableextra}
 penguins %>% 
   group_by(species) %>% 
@@ -78,7 +60,7 @@ penguins %>%
 
 You can also embed plots, for example:
 
-```{r histogram, echo = FALSE, fig.cap = "Caption for the plot created", fig.align = "center", warning = FALSE}
+```{r histogram, fig.cap = "Caption for the plot created", fig.align = "center", warning = FALSE}
 flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), 
                  alpha = 0.5, 
@@ -87,48 +69,8 @@ flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
   theme_minimal() +
   labs(x = "Flipper length (mm)",
        y = "Frequency",
-       title = "Penguin flipper lengths")
+       title = paste0("Flipper lengths on ", unique(penguins$island),  " island"))
 flipper_hist
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-## Equations  
-
-equation $z = x + y$ can be written inline or equations can be centered in their own block
-
-$$a^2 + b^2 = c^2$$
-
-# More Options
-
-## Images  
-
-If we have images or plots already stored that we wish to add we can write the following with or without an image caption.
-
-```{r image, fig.align = "center", fig.width=5, fig.height=5, caption="Palmer Penguins"}
-knitr::include_graphics("resources/pp_logo.png")
-```
-
-## Engines
-
-Python, Shell, SQL, Rcpp, Stan, JavaScript, Julia, C and Fortran are all options
-
-```{bash}
-echo "Hello from Bash!"
-```
-
-```{python}
-def square(a):
-  return a * a
-
-square(4)  
-```
-
-## Citations
-How do we cite things?
-
-Citations need a **.bib** file and to know the citation key. We can cite PalmerPenguins [@horst2020] and at the same time lets give the citation for R created by Robert Gentleman and Ross Ihaka [@r2020] or inline like this @r2020
-
-And we can change all the stlyes of citation to suit. [Here](https://citationstyles.org/) or here at [Zotero](https://www.zotero.org/styles) 
-
-# References

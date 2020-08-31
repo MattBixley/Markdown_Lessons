@@ -5,7 +5,7 @@ author: "Your Name"
 date: "July 3, 2015"
 output:
   word_document:
-    reference_docx: resources/markdown_styles.docx
+    #reference_docx: resources/markdown_styles.docx
 ---
 
 My report starts here.
