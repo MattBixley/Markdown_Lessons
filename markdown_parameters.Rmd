@@ -1,20 +1,12 @@
 ---
-title: "Intro to Markdown"
+title: "Parameterized Markdown Reports"
 author: "Matt Bixley"
 date: "27 August, 2020"
 output:
-  html_document:
-    code_folding: show
-    df_print: kable
-    highlight: espresso
-    number_sections: yes
-    theme: readable
-    toc: yes
-    toc_float: yes
+  word_document:
+    reference_docx: resources/markdown_styles.docx
 bibliography: resources/markdown.bib
 csl: resources/new-zealand-veterinary-journal.csl
-subtitle: _writing repoducible reports_
-always_allow_html: yes
 params:
   island: biscoe
 ---
@@ -23,8 +15,6 @@ params:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 #knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-library(kableExtra)
-library(palmerpenguins)
 library(knitr)
 library(janitor)
 ```
@@ -35,42 +25,35 @@ library(janitor)
 - report template
 - output
 
-# Data
+## Read Data  
 
-Read in our paramterized data
-
+Read in our parameterized data, this uses the `glue package` and we also use `here` to help find our data within our project. Again we are using the Palmer Penguins dataset [@horst2020]
+  
 ```{r data}
-penguins <- data <- read_csv(here::here('data', glue::glue(params$island, '.csv'))) %>% 
+data <- read_csv(here::here('data', glue::glue(params$island, '.csv'))) %>% 
   clean_names()
 ```
 
-# Tables  
+\pagebreak
+### Header 3 - Table  
 
-```{r kableextra}
-penguins %>% 
+
+```{r table, echo = F}
+data %>% 
   group_by(species) %>% 
   select(contains(c("length", "depth", "mass"))) %>% 
   summarize_all(., mean, na.rm = TRUE) %>%
-  kable(caption = "Summarized Data", format = "html") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F, position = "left")
+  kable(caption = "Summarized Data", digits = 2)
 ```
 
+\pagebreak
+#### Header 4 - Plot
 
-## Plots
-
-You can also embed plots, for example:
-
-```{r histogram, fig.cap = "Caption for the plot created", fig.align = "center", warning = FALSE}
-flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
-  geom_histogram(aes(fill = species), 
-                 alpha = 0.5, 
-                 position = "identity") +
-  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
-  theme_minimal() +
-  labs(x = "Flipper length (mm)",
-       y = "Frequency",
-       title = paste0("Flipper lengths on ", unique(penguins$island),  " island"))
-flipper_hist
+```{r plot, echo = T}
+data %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(colour = species, shape = species), size = 3) +
+  labs(title = params$island)
 ```
 
-
+# References

@@ -35,7 +35,6 @@ write something else
 penguins %>% 
   group_by(species) %>% 
   select(contains(c("length", "depth", "mass"))) %>% 
-  #summarize_all(., mean, na.rm = TRUE) %>%
   summarize_all(., mean, na.rm = TRUE) %>%
   kable(caption = "Summarized Data", digits = 2)
 ```
@@ -45,7 +44,7 @@ penguins %>%
 
 ```{r plot, echo = T}
 penguins %>% 
-  ggplot(aes(x = bill_length_mm, y = body_mass_g)) +
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(colour = species, shape = species), size = 3)
 ```
 
