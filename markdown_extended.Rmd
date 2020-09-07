@@ -48,7 +48,6 @@ PDF documents can also have templates for example a thesis template. The example
 
 ```{r, eval = F}
 if (!require("remotes")) install.packages("remotes", repos = "https://cran.rstudio.org")
-remotes::install_github("rstudio/bookdown")
 remotes::install_github("ismayc/thesisdown")
 ```
 
