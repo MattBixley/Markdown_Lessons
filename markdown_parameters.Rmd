@@ -1,5 +1,6 @@
 ---
-title: "Parameterized Markdown Reports"
+#title: "Parameterized Markdown Reports"
+title: "`r params$doc_title` island report"
 author: "Matt Bixley"
 date: "27 August, 2020"
 output:
@@ -9,6 +10,7 @@ bibliography: resources/markdown.bib
 csl: resources/new-zealand-veterinary-journal.csl
 params:
   island: biscoe
+  doc_title: biscoe
 ---
 
 ```{r setup, include=FALSE}
