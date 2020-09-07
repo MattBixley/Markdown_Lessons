@@ -28,16 +28,19 @@ source("scripts/setup.R")
   * tables
   * plots
   * captions/figures
-- * citations
+  * citations
 
 ## 2. Extended Markdown
 
 - Objectives
-    * templates
-    * formatting for word
-    * parameterization
-    * Bookdown
-        * cross references
+    * report template
+        - msword
+        - pdfs
+    * parameters
+        - input
+        - output
+    * bookdown
+        - cross references
         
 ### Resources  
 More detailed tutorials and examples can be found at the following
