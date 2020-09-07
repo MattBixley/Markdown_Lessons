@@ -6,11 +6,11 @@ output:
   html_document:
     code_folding: show
     df_print: kable
-    highlight: espresso
-    number_sections: yes
-    theme: readable
+    theme: simplex
+    highlight: textmate
     toc: yes
     toc_float: yes
+    number_sections: yes
 bibliography: resources/markdown.bib
 csl: resources/new-zealand-veterinary-journal.csl
 subtitle: _writing repoducible reports_
