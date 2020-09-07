@@ -1,12 +1,23 @@
 ---
 title: "Test Report"
-subtitle: "subtitle here"
-author: "Your Name"
+author: "Matt Bixley"
 date: "July 3, 2015"
 output:
-  word_document:
-    reference_docx: resources/markdown_styles.docx
+  word_document: null
+  pdf_document: default
+subtitle: test setup for Markdown
+abstract: This document provides an introduction to R Markdown, argues for its...
 ---
+```{r setup, include = F}
+knitr::opts_chunk$set(
+  echo = TRUE, warning = FALSE, message = FALSE
+  )
+library(knitr)
+library(palmerpenguins)
+library(tidyverse)
+
+```
+
 
 My report starts here.
 
@@ -21,14 +32,11 @@ write something else
 
 
 ```{r table, echo = F}
-library(knitr)
-library(palmerpenguins)
-library(tidyverse)
-
 penguins %>% 
   group_by(species) %>% 
   select(contains(c("length", "depth", "mass"))) %>% 
+  #summarize_all(., mean, na.rm = TRUE) %>%
   summarize_all(., mean, na.rm = TRUE) %>%
-  kable(caption = "Summarized Data")
+  kable(caption = "Summarized Data", digits = 2)
 ```
 
