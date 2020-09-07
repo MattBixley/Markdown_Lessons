@@ -1,0 +1,86 @@
+---
+title: "Advanced Markdown"
+subtitle: _writing parameterized reports_
+author: "Matt Bixley"
+date: "27 August, 2020"
+output:
+  html_document:
+    code_folding: show
+    df_print: kable
+    highlight: espresso
+    number_sections: yes
+    theme: readable
+    toc: yes
+    toc_float: yes
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+#knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(kableExtra)
+library(palmerpenguins)
+library(knitr)
+```
+
+# Advanced R Markdown
+
+## Objectives
+
+- report template
+  * msword
+  * pdfs
+- parameters
+  * input
+  * output
+- bookdown
+  * cross references
+
+## Templates
+
+### MSWord
+MSWord requires a reference document for the formating of tables and data. `resources\markdown_styles.docx` is the simple example we are going to use but you can download complex journal templates and formats or create your own.
+
+### PDF/Thesis
+
+PDF documents can also have templates for example a thesis template. The example here is going to be from the `thesisdown` package created by [ismayc](https://github.com/ismayc/thesisdown). Thesis` typically use the [bookdown](https://github.com/rstudio/bookdown) form of R Markdown which allows for added felxibility particulary around referencing figures and tables.
+
+```{r, eval = F}
+if (!require("remotes")) install.packages("remotes", repos = "https://cran.rstudio.org")
+remotes::install_github("rstudio/bookdown")
+remotes::install_github("ismayc/thesisdown")
+```
+
+New Document, Markdown, From Template - choose a template
+
+## Rendering
+
+```{r, basic, eval = F}
+rmarkdown::render("markdown_parameters.Rmd", params = list(island = "torgersen"))
+
+rmarkdown::render("markdown_parameters.Rmd", params = "ask")
+```
+
+```{r, output, eval = F}
+rmarkdown::render("markdown_parameters.Rmd", params = list(island = "dream"), 
+                  output_file = paste0("penguins_", params$island, ".docx"))
+```
+
+```{r, function, eval = F}
+render_report = function(x) {
+  rmarkdown::render(
+    "markdown_parameters.Rmd", 
+    params = list(island = x, doc_title = x),
+    output_file = paste0("penguins_", x,".docx")
+  )
+}
+
+# single files
+render_report("torgersen")
+
+# list files
+render_list <- list("dream", "biscoe", "torgersen")
+purrr::walk(render_list, render_report)
+```
+

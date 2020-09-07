@@ -1,13 +1,14 @@
 # Install required packages
-need_package <- c("tidyverse", "here", "kableExtra", "palmerpenguins")
+need_package <- c("tidyverse", "here", "kableExtra", "palmerpenguins", "bookdown", "janitor")
 
 install_packages <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-  if (length(new.pkg)) 
-    install.packages(new.pkg, dependencies = TRUE)
+  install.packages(new.pkg, dependencies = TRUE)
 }
 
-purrr::walk(need_package, install_packages)
+for(i in need_package){
+  install_packages(i)
+}
 
 # Split the palmer penguins data to islands
 
