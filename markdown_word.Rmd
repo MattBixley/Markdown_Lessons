@@ -5,6 +5,7 @@ date: "July 3, 2015"
 output: 
   word_document:
     reference_docx: resources/markdown_styles.docx
+#    reference_docx: resources/PLOS_One_word_Template.docx
 subtitle: "test setup for Markdown"
 abstract: "This document provides an introduction to R Markdown and looks at the use of templates within as MSWord environment"
 ---
@@ -39,12 +40,14 @@ penguins %>%
   kable(caption = "Summarized Data", digits = 2)
 ```
 
-\pagebreak
-#### Header 4 - Plot
 
+#### Header 4 - Plot
+  
+  
 ```{r plot, echo = T}
 penguins %>% 
   ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(colour = species, shape = species), size = 3)
 ```
 
+#### Another Header
