@@ -18,9 +18,6 @@ always_allow_html: yes
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 #knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(kableExtra)
-library(palmerpenguins)
 library(knitr)
 ```
 
@@ -42,13 +39,27 @@ library(knitr)
 ### MSWord
 MSWord requires a reference document for the formating of tables and data. `resources\markdown_styles.docx` is the simple example we are going to use but you can download complex journal templates and formats or create your own.
 
+Within the YAML header we define a reference document as follows
+
+```{r header, eval = F}
+---
+title: "Test Report"
+author: "Matt Bixley"
+date: "July 3, 2015"
+output: 
+  word_document:
+    reference_docx: resources/markdown_styles.docx
+---
+```
+
+
 ### PDF/Thesis
 
-PDF documents can also have templates for example a thesis template. The example here is going to be from the `thesisdown` package created by [ismayc](https://github.com/ismayc/thesisdown). Thesis` typically use the [bookdown](https://github.com/rstudio/bookdown) form of R Markdown which allows for added felxibility particulary around referencing figures and tables.
+PDF documents can also have templates, for example a thesis template. The example here is going to be from the `thesisdown` package created by [ismayc](https://github.com/ismayc/thesisdown). Thesis` typically use the [bookdown](https://github.com/rstudio/bookdown) form of R Markdown which allows for added felxibility particulary around referencing figures and tables.
 
 ```{r, eval = F}
-if (!require("remotes")) install.packages("remotes", repos = "https://cran.rstudio.org")
-remotes::install_github("ismayc/thesisdown")
+if (!require("devtools")) install.packages("devtools", repos = "https://cran.rstudio.org")
+devtools::install_github("ismayc/thesisdown")
 ```
 
 New Document, Markdown, From Template - choose a template

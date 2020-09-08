@@ -1624,10 +1624,19 @@ div.tocify {
 <div id="msword" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> MSWord</h3>
 <p>MSWord requires a reference document for the formating of tables and data. <code>resources\markdown_styles.docx</code> is the simple example we are going to use but you can download complex journal templates and formats or create your own.</p>
+<p>Within the YAML header we define a reference document as follows</p>
+<pre class="r"><code>---
+title: &quot;Test Report&quot;
+author: &quot;Matt Bixley&quot;
+date: &quot;July 3, 2015&quot;
+output: 
+  word_document:
+    reference_docx: resources/markdown_styles.docx
+---</code></pre>
 </div>
 <div id="pdfthesis" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> PDF/Thesis</h3>
-<p>PDF documents can also have templates for example a thesis template. The example here is going to be from the <code>thesisdown</code> package created by <a href="https://github.com/ismayc/thesisdown">ismayc</a>. Thesis` typically use the <a href="https://github.com/rstudio/bookdown">bookdown</a> form of R Markdown which allows for added felxibility particulary around referencing figures and tables.</p>
+<p>PDF documents can also have templates, for example a thesis template. The example here is going to be from the <code>thesisdown</code> package created by <a href="https://github.com/ismayc/thesisdown">ismayc</a>. Thesis` typically use the <a href="https://github.com/rstudio/bookdown">bookdown</a> form of R Markdown which allows for added felxibility particulary around referencing figures and tables.</p>
 <pre class="r"><code>if (!require(&quot;remotes&quot;)) install.packages(&quot;remotes&quot;, repos = &quot;https://cran.rstudio.org&quot;)
 remotes::install_github(&quot;ismayc/thesisdown&quot;)</code></pre>
 <p>New Document, Markdown, From Template - choose a template</p>
