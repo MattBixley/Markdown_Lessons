@@ -1,0 +1,89 @@
+---
+title: "MultiPlots"
+author: "Matt Bixley"
+date: "22/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Cowplot
+
+## ggarrange
+
+## gt
+
+[Exploring the gt (Grammar Of Tables) Package in R](https://towardsdatascience.com/exploring-the-gt-grammar-of-tables-package-in-r-7fff9d0b40cd)
+
+```{r gt}
+if(!require("gt")) install.packages("gt")
+library(gt)
+```
+
+Make a basic table
+```{r table1}
+t1 <- penguins %>% 
+  tibble() %>% 
+  filter(species == "Adelie") %>% 
+  group_by(island, year) %>% 
+  summarise_if(is.numeric, sum) %>% 
+  mutate(island = case_when(
+    island == "Biscoe" ~ "Biscoe Island",
+    island == "Dream" ~ "Dream Island",
+    island == "Torgersen" ~ "Torgersen Island"
+  )) %>% 
+    gt(rowname_col = "year")
+t1
+```
+
+```{r colvars}
+colvars <- c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")
+```
+
+Add a summary row
+```{r table2}
+t2 <- t1 %>%
+  summary_rows(
+    groups = T,
+    columns = vars(colvars),
+    fns = list(AVERAGE = "mean"),
+    formatter = fmt_number,
+    use_seps = T,
+    decimals = 0
+  )
+t2
+
+```
+
+headers and footers
+colvars <- c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")
+```{r table3}
+t3 <- t2 %>% 
+  cols_label(
+    bill_length_mm = "Bill Length",
+    bill_depth_mm = "Bill Depth",
+    flipper_length_mm = "Flipper Length",
+    body_mass_g = "Body Mass"
+    ) %>% 
+  tab_header(title = "All About Adelie Penguins",
+    subtitle = "Yearly measurements of penguin things") %>% 
+  cols_align(align = "right", columns = T) %>% 
+  tab_footnote(
+    footnote = "In grams",
+    location = cells_column_labels(
+      columns = vars(body_mass_g)
+    )
+  ) %>% 
+  tab_footnote(
+    footnote = "In mm",
+    location = cells_column_labels(
+      columns = vars(bill_length_mm, bill_depth_mm, flipper_length_mm)
+    )
+  )
+t3
+```
+
