@@ -3,8 +3,9 @@ title: "gt Table"
 author: "Matt Bixley"
 date: "22/09/2020"
 output:
-  word_document: default
-  html_document: default
+  html_document:
+    code_folding: show
+  word_document:
 ---
 
 ```{r setup, include=FALSE}
@@ -13,16 +14,24 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
+# Tables
+
+There are several packages that help for making beautiful tables with Markdown. 
+
+[kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)  
+[Huxtable](https://cran.r-project.org/web/packages/huxtable/vignettes/huxtable.html)  
+[gt](https://themockup.blog/posts/2020-05-16-gt-a-grammer-of-tables/#gt-package---a-grammar-of-tables) - Grammar of Tables  
+
 ## gt
 
 [Exploring the gt (Grammar Of Tables) Package in R](https://towardsdatascience.com/exploring-the-gt-grammar-of-tables-package-in-r-7fff9d0b40cd)
 
-```{r gt}
+```{r gt, echo = F}
 if(!require("gt")) install.packages("gt")
 library(gt)
 ```
 
-Make a basic table
+Make a starter table
 ```{r table1}
 t1 <- penguins %>% 
   tibble() %>% 
@@ -43,6 +52,7 @@ colvars <- c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_
 ```
 
 Add a summary row
+
 ```{r table2}
 t2 <- t1 %>%
   summary_rows(
@@ -57,8 +67,9 @@ t2
 
 ```
 
-headers and footers
-colvars <- c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")
+Headers and Footers
+
+
 ```{r table3}
 t3 <- t2 %>% 
   cols_label(
