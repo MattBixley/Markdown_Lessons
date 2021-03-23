@@ -5,7 +5,6 @@ date: "22/09/2020"
 output:
   html_document:
     code_folding: show
-  word_document:
 ---
 
 ```{r setup, include=FALSE}

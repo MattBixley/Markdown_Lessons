@@ -1,5 +1,6 @@
 ---
 title: "Intro to Markdown"
+subtitle: _writing repoducible reports_
 author: "Matt Bixley"
 date: "`r Sys.Date()`"
 output:
@@ -13,7 +14,6 @@ output:
     number_sections: yes
 bibliography: resources/markdown.bib
 csl: resources/new-zealand-veterinary-journal.csl
-subtitle: _writing repoducible reports_
 always_allow_html: yes
 ---
 
@@ -81,7 +81,7 @@ penguins %>%
 
 You can also embed plots, for example:
 
-```{r histogram, echo = FALSE, fig.cap = "Caption for the plot created", fig.align = "center", warning = FALSE}
+```{r histogram, echo = T, fig.cap = "Caption for the plot created", fig.align = "center", warning = FALSE}
 flipper_hist <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), 
                  alpha = 0.5, 
@@ -116,16 +116,21 @@ knitr::include_graphics("resources/pp_logo.png")
 
 Python, Shell, SQL, Rcpp, Stan, JavaScript, Julia, C and Fortran are all options
 
+Bash
 ```{bash}
 echo "Hello from Bash!"
 ```
-
+  
+Python
 ```{python}
 def square(a):
   return a * a
 
 square(4)  
 ```
+
+All the available Engines can be found with the following line `names(knitr::knit_engines$get())`  
+`r names(knitr::knit_engines$get())`
 
 ## Citations
 How do we cite things?
