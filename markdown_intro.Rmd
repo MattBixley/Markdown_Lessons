@@ -14,6 +14,7 @@ output:
     number_sections: yes
 bibliography: resources/markdown.bib
 csl: resources/new-zealand-veterinary-journal.csl
+#csl: resources/molecular-ecology.csl
 always_allow_html: yes
 ---
 
