@@ -4,8 +4,8 @@ title: "`r params$doc_title` island report"
 author: "Matt Bixley"
 date: "27 August, 2020"
 output:
-  word_document:
-    reference_docx: resources/markdown_styles.docx
+  html_document:
+    code_folding: show
 bibliography: resources/markdown.bib
 csl: resources/new-zealand-veterinary-journal.csl
 params:

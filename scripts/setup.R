@@ -1,5 +1,5 @@
 # Install required packages
-need_package <- c("tidyverse", "here", "kableExtra", "palmerpenguins", "bookdown", "janitor")
+need_package <- c("tidyverse", "here", "kableExtra", "palmerpenguins", "bookdown", "janitor", "glue")
 
 install_packages <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]

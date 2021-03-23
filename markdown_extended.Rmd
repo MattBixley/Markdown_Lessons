@@ -47,8 +47,8 @@ title: "Test Report"
 author: "Matt Bixley"
 date: "July 3, 2015"
 output: 
-  word_document:
-    reference_docx: resources/markdown_styles.docx
+  html_document:
+
 ---
 ```
 
@@ -74,7 +74,7 @@ rmarkdown::render("markdown_parameters.Rmd", params = "ask")
 
 ```{r, output, eval = F}
 rmarkdown::render("markdown_parameters.Rmd", params = list(island = "dream"), 
-                  output_file = paste0("penguins_", params$island, ".docx"))
+                  output_file = paste0("penguins_", params$island, ".html"))
 ```
 
 ```{r, function, eval = F}
@@ -82,7 +82,7 @@ render_report = function(x) {
   rmarkdown::render(
     "markdown_parameters.Rmd", 
     params = list(island = x, doc_title = x),
-    output_file = paste0("penguins_", x,".docx")
+    output_file = paste0("penguins_", x,".html")
   )
 }
 
@@ -93,4 +93,15 @@ render_report("torgersen")
 render_list <- list("dream", "biscoe", "torgersen")
 purrr::walk(render_list, render_report)
 ```
+
+## Bookdown
+
+## Resources
+More detailed tutorials and examples can be found at the following
+
+[RStudio/RMarkdown](https://rmarkdown.rstudio.com)  
+[R Markdown for Scientists](https://rmd4sci.njtierney.com/)  
+[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+[R for Data Science](https://r4ds.had.co.nz/index.html)
+
 
