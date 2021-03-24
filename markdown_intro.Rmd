@@ -13,8 +13,8 @@ output:
     toc_float: yes
     number_sections: yes
 bibliography: resources/markdown.bib
-csl: resources/new-zealand-veterinary-journal.csl
-#csl: resources/molecular-ecology.csl
+#csl: resources/new-zealand-veterinary-journal.csl
+csl: resources/molecular-ecology.csl
 always_allow_html: yes
 ---
 
@@ -37,7 +37,7 @@ library(knitr)
   * chunks
   * inline
 - tables
-- plotting
+- ploting
 - citations
 
 ## Notes
@@ -47,7 +47,9 @@ Murray Cadzow wrote some notes (with markdown) for last years Webinar https://ha
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using _R Markdown_ see <http://rmarkdown.rstudio.com>. [@rmarkdown2018]
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can highlight a piece of code like this: `Ctrl + Shft + I` 
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can highlight a piece of code like this: `Ctrl + Shft + I`
+
+1 + 1 = `r 1 +1`
 
 # Palmer Penguins
 
